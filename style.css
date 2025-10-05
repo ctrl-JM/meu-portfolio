@@ -1,0 +1,730 @@
+/* Fonte e reset */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background: #111;
+    height: 100%;
+}
+
+/* --- fundo de partículas: garantir que fique atrás --- */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* muito importante: fica atrás */
+  pointer-events: none;
+}
+
+/* --- header / nav --- */
+:root {
+    --header-h: 64px;
+}
+
+/* ajuste 64px se seu header for maior/menor */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-h);
+    padding: 12px 20px;
+    z-index: 30;  /* >> CORRIGIR: aumentar prioridade */
+    background: transparent; /* ou rgba(17,17,17,0.6) se quiser fundo levemente escuro */
+}
+
+/* container dentro do header para controlar largura e evitar overflow */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* evita que o nav "vaze" da tela — permite quebra/empilhamento em telas pequenas */
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap; /* permite que quebre em linhas menores automaticamente */
+}
+
+
+header .logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+header nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #00adb5;
+}
+
+/* --- hero (onde está a foto) --- */
+.hero {
+  position: relative;
+  z-index: 15; /* acima do canvas das partículas */
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: var(--header-h);
+}
+
+
+/* garantir que a imagem fique por cima */
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #06c6b5;
+  background: #111;    /* >> CORRIGIR: tampa partículas que passariam atrás da borda */
+  position: relative;
+  z-index: 25;         /* >> CORRIGIR: acima do hero e do canvas */
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* Ícones sociais */
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00adb5;
+}
+
+/* Seções */
+section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #00adb5;
+}
+
+/* SOBRE */
+
+.sobre {
+  background: #1a1a1a;
+  padding: 60px 20px;
+  width: 100%;
+}
+
+/* HABILIDADES */
+
+.habilidades {
+  padding: 80px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.hab-titulo {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+}
+
+.habilidades-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.habilidade-card {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 20px 50px;
+  font-size: 1.1em;
+  color: #fff;
+  width: 220px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.habilidade-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid #333;
+}
+
+/* CERTIFICADOS */
+
+/* === ESTILOS EXCLUSIVOS DA PÁGINA DE CERTIFICADOS === */
+
+.sec-certificados {
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.sec-certificados h2 {
+  font-size: 3em;
+  margin-bottom: 40px;
+}
+
+.certificados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.certificado-card {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 30px 25px;
+  max-width: 400px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.certificado-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.certificado-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.3em;
+}
+
+.certificado-card p {
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+.btn-certificado {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #4f46e5;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-certificado:hover {
+  background-color: #6d5dfc;
+}
+
+/* CERTIFICADO-INDIVIDUAL */
+
+/* Estilos para a página de certificado individual */
+.certificado-container {
+    position: relative;
+    z-index: 15;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.certificado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.certificado-header h2 {
+    color: #00adb5;
+    margin: 0;
+}
+
+.idiomas {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-idioma {
+    padding: 8px 16px;
+    border: 1px solid #00adb5;
+    background: transparent;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-idioma.active,
+.btn-idioma:hover {
+    background: #00adb5;
+    color: #111;
+}
+
+.pdf-viewer {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.voltar-container {
+    text-align: center;
+}
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #00adb5;
+    color: #111;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+    background: #06c6b5;
+    transform: translateY(-2px);
+}
+
+/* SEÇÃO PROJETOS */
+.projetos {
+    padding: 80px 20px;
+    text-align: center;
+    background: #111;
+}
+
+.projetos h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #00adb5;
+}
+
+.projetos-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projeto-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 400px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.projeto-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #00adb5;
+    box-shadow: 0 10px 30px rgba(0, 173, 181, 0.2);
+}
+
+.projeto-card h3 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #00adb5;
+}
+
+.projeto-card p {
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.btn-projeto {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #00adb5;
+    color: #111;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #00adb5;
+}
+
+.btn-projeto:hover {
+    background: transparent;
+    color: #00adb5;
+    transform: scale(1.05);
+}
+
+/* Estado quando só tem um projeto */
+.projetos-container:has(.projeto-card:only-child) {
+    justify-content: center;
+}
+
+.projetos-container:has(.projeto-card:only-child) .projeto-card {
+    max-width: 500px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Tablets (768px para baixo) */
+@media (max-width: 768px) {
+    /* Header e Navegação */
+    header {
+        padding: 10px 15px;
+    }
+    
+    header nav a {
+        margin-left: 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Hero Section */
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Seções Gerais */
+    section {
+        margin: 40px auto;
+        padding: 0 15px;
+    }
+    
+    section h2 {
+        font-size: 1.6rem;
+    }
+    
+    /* Sobre */
+    .sobre {
+        padding: 40px 15px;
+    }
+    
+    /* Habilidades */
+    .habilidades {
+        padding: 60px 15px;
+    }
+    
+    .hab-titulo {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    
+    .habilidade-card {
+        width: 180px;
+        padding: 15px 30px;
+        font-size: 1em;
+    }
+    
+    /* Certificados */
+    .sec-certificados {
+        padding: 60px 15px;
+    }
+    
+    .sec-certificados h2 {
+        font-size: 2.5em;
+    }
+    
+    .certificados-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    
+    .certificado-card {
+        padding: 25px 20px;
+    }
+    
+    /* Certificado Individual e Currículo */
+    .certificado-container {
+        margin: 40px auto;
+        padding: 0 15px;
+    }
+    
+    .certificado-header h2 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    
+    .pdf-viewer {
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    
+    #certificadoFrame,
+    #curriculoFrame {
+        height: 500px;
+        border-radius: 8px;
+    }
+    
+    .btn-voltar {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Projetos */
+    .projetos {
+        padding: 60px 15px;
+    }
+    
+    .projetos h2 {
+        font-size: 2em;
+    }
+    
+    .projeto-card {
+        padding: 25px 20px;
+    }
+}
+
+/* Celulares (480px para baixo) */
+@media (max-width: 480px) {
+    /* Header */
+    :root {
+        --header-h: 52px;
+    }
+    
+    header {
+        padding: 8px 12px;
+    }
+    
+    nav {
+        gap: 12px;
+    }
+    
+    header nav a {
+        margin-left: 12px;
+        font-size: 0.85rem;
+    }
+    
+    /* Hero Section */
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+    
+    .social-icons a {
+        margin: 0 8px;
+        font-size: 1.3rem;
+    }
+    
+    /* Seções */
+    section {
+        margin: 30px auto;
+        padding: 0 12px;
+    }
+    
+    section h2 {
+        font-size: 1.4rem;
+    }
+    
+    /* Habilidades */
+    .habilidades {
+        padding: 40px 12px;
+    }
+    
+    .hab-titulo {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    
+    .habilidades-container {
+        gap: 15px;
+    }
+    
+    .habilidade-card {
+        width: 100%;
+        max-width: 250px;
+        padding: 15px 20px;
+    }
+    
+    /* Certificados */
+    .sec-certificados {
+        padding: 40px 12px;
+    }
+    
+    .sec-certificados h2 {
+        font-size: 2em;
+    }
+    
+    .certificados-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .certificado-card {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+    
+    .certificado-card h3 {
+        font-size: 1.2em;
+    }
+    
+     /* Certificado Individual e Currículo */
+    .certificado-container {
+        margin: 30px auto;
+        padding: 0 10px;
+    }
+    
+    .certificado-header {
+        margin-bottom: 20px;
+    }
+    
+    .certificado-header h2 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+    
+    .pdf-viewer {
+        padding: 5px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+    
+    #certificadoFrame,
+    #curriculoFrame {
+        height: 400px;
+        border-radius: 6px;
+    }
+    
+    /* Botões de idioma em mobile */
+    .idiomas {
+        gap: 8px;
+    }
+    
+    .btn-idioma {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        flex: 1;
+        min-width: 100px;
+    }
+    
+    .btn-voltar {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    /* Projetos */
+    .projetos {
+        padding: 40px 12px;
+    }
+    
+    .projetos h2 {
+        font-size: 1.8em;
+    }
+    
+    .projetos-container {
+        gap: 20px;
+    }
+    
+    .projeto-card {
+        padding: 20px 15px;
+        margin: 0 5px;
+    }
+    
+    .projeto-card h3 {
+        font-size: 1.2em;
+    }
+    
+    .btn-projeto {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Celulares muito pequenos (360px para baixo) */
+@media (max-width: 360px) {
+    header nav a {
+        margin-left: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+    
+    .profile-pic {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .certificados-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #certificadoFrame {
+        height: 350px;
+    }
+    
+    .btn-certificado,
+    .btn-projeto {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}

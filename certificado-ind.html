@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Certificado</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Fundo animado -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <header>
+        <h1 class="logo"></h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="certificado.html">Certificados</a> 
+            <a href="assets/Currículo - JULIA MARIA DA SILVA (5).pdf" target="_blank">CV</a>
+        </nav>
+    </header>
+
+    <!-- Container do Certificado -->
+    <section class="certificado-container">
+        <div class="certificado-header">
+            <h2 id="certificadoTitulo">Carregando certificado...</h2>
+            <div class="idiomas">
+                <button class="btn-idioma active" data-idioma="pt">🇧🇷 Português</button>
+                <button class="btn-idioma" data-idioma="en">🇺🇸 English</button>
+                <button class="btn-idioma" data-idioma="es">🇪🇸 Español</button>
+            </div>
+        </div>
+
+        <div class="pdf-viewer">
+            <iframe id="certificadoFrame" 
+                    src="about:blank" 
+                    width="100%" 
+                    height="600px" 
+                    frameborder="0">
+            </iframe>
+        </div>
+
+        <div class="voltar-container">
+            <a href="certificado.html" class="btn-voltar"> 
+                <i class="fas fa-arrow-left"></i> Voltar para Certificados
+            </a>
+        </div>
+    </section>
+
+    <script src="certificados.js"></script>
+</body>
+</html>

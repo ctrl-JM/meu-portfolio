@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio - Julia Maria da Silva</title>
+  <link rel="icon" type="image/png" href="assets/portfolio.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonte elegante (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Biblioteca de ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+
+<body>
+  <!-- Fundo animado -->
+  <div id="particles-js"></div>
+
+  <!-- Navbar -->
+  <header>
+    <h1 class="logo"></h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="certificado.html">Certificados</a>
+      <a href="curriculo.html" target="_blank">CV</a>
+    </nav>
+  </header>
+
+  <!-- Seção principal estilo "hero" -->
+  <section class="hero">
+    <img src="assets/perfileu.jpg" alt="Foto de Julia" class="profile-pic">
+    <h2>Julia Maria da Silva</h2>
+    <p>Estudante, Cientista Social e Desenvolvedora</p>
+    <div class="social-icons">
+      <a href="https://github.com/ctrl-JM" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/julia-silva-950b46163" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:julia.maria@unifesp.br"><i class="fas fa-envelope"></i></a>
+    </div>
+  </section>
+
+
+  <section class="sobre">
+    <h2>Olá! Meu nome é Julia. Sou estudante/profissional na área de Ciências Sociais e Tecnologia e busco oportunidades
+      para aplicar meus conhecimentos, crescer profissionalmente e contribuir com projetos significativos.</h2>
+  </section>
+
+  <section class="habilidades">
+    <h2 class="hab-titulo">Habilidades</h2>
+    <div class="habilidades-container">
+      <div class="habilidade-card">Boa comunicação e escrita clara</div>
+      <div class="habilidade-card">Trabalho em equipe e resolução de problemas</div>
+      <div class="habilidade-card">Capacidade de trabalhar sob pressão</div>
+      <div class="habilidade-card">Aprendizado rápido e adaptação</div>
+      <div class="habilidade-card">Motivação e proatividade</div>
+    </div>
+  </section>
+
+  <section class="projetos">
+    <h2>Meus Projetos</h2>
+    <div class="projetos-container">
+      <div class="projeto-card">
+        <h3>Portfólio Pessoal</h3>
+        <p>Desenvolvimento do meu próprio portfólio web responsivo utilizando HTML, CSS e JavaScript. Inclui sistema de
+          certificados multilíngue e design moderno.</p>
+        <a href="https://github.com/seu-usuario/meu-portfolio" class="btn-projeto" target="_blank">Ver no GitHub</a>
+      </div>
+
+      <div class="projeto-card">
+        <h3>Site - Política de Atendimento da Prefeitura de SP</h3>
+        <p>Desenvolvimento de site institucional para a Prefeitura de São Paulo utilizando WordPress com customizações
+          em HTML/CSS. Trabalho focado em usabilidade e acessibilidade.</p>
+        <div class="projeto-links">
+          <a href="https://politicadeatendimento.prefeitura.sp.gov.br/index.html" class="btn-projeto" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Ver Site
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    &copy; 2025 Julia Maria da Silva. Todos os direitos reservados.
+  </footer>
+
+  <!-- Script para partículas -->
+  <script>
+    particlesJS.load('particles-js', 'particles.json', function () {
+      console.log('Particles.js configurado com sucesso!');
+    });
+  </script>
+  <script src="certificados.js"></script>
+</body>
+
+</html>
