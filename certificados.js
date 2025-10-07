@@ -170,7 +170,7 @@ const certificados = {
 
 };
 
-// Função para carregar certificado
+// Função para carregar certificado - VERSÃO CORRIGIDA
 function carregarCertificado() {
     const urlParams = new URLSearchParams(window.location.search);
     const certificadoId = urlParams.get('id');
@@ -181,8 +181,22 @@ function carregarCertificado() {
         const certificado = certificados[certificadoId];
         document.getElementById('certificadoTitulo').textContent = certificado.titulo;
 
-        // Carrega versão em português por padrão
-        mudarIdioma('pt');
+        // Verificar se é mobile
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // MOBILE: Remove seleção de TODOS os botões
+            console.log('📱 Mobile - removendo seleção de todos os botões');
+            document.querySelectorAll('.btn-idioma').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // NÃO chama mudarIdioma() - nenhum PDF é carregado
+        } else {
+            // DESKTOP: Comportamento normal - Português selecionado
+            console.log('🖥️ Desktop - português selecionado por padrão');
+            mudarIdioma('pt'); // Isso vai carregar o PDF e selecionar o botão
+        }
+        
     } else {
         document.getElementById('certificadoTitulo').textContent = 'Certificado não encontrado';
         console.error('❌ Certificado não encontrado para ID:', certificadoId);
@@ -278,29 +292,68 @@ const curriculos = {
 
 // Função para trocar idioma do currículo
 function mudarIdiomaCurriculo(idioma) {
+    console.log('🌐 Currículo - Mudando para idioma:', idioma);
+
     if (curriculos[idioma]) {
-        const iframe = document.getElementById('curriculoFrame');
-        iframe.src = curriculos[idioma];
+        // Verifica se é mobile
+        const isMobile = window.innerWidth <= 768;
         
-        // Atualiza botões ativos
+        if (isMobile) {
+            // MOBILE: Abre em nova aba
+            console.log('📱 Mobile - abrindo currículo em nova aba');
+            window.open(curriculos[idioma], '_blank');
+        } else {
+            // DESKTOP: Carrega no iframe
+            const iframe = document.getElementById('curriculoFrame');
+            console.log('🖥️ Desktop - carregando currículo no iframe');
+            iframe.src = curriculos[idioma];
+        }
+
+        // Atualiza botões ativos (funciona para ambos)
         document.querySelectorAll('.btn-idioma').forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.idioma === idioma) {
                 btn.classList.add('active');
             }
         });
+        
     } else {
-        console.error('Currículo não encontrado para idioma:', idioma);
+        console.error('❌ Currículo não encontrado para idioma:', idioma);
     }
 }
 
-// Inicializar eventos do currículo
+// Inicializar eventos do currículo - VERSÃO INTELIGENTE
 function inicializarCurriculo() {
+    console.log('📄 Inicializando currículo...');
+    
+    // Verificar se é mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // MOBILE: Remove seleção de TODOS os botões
+        console.log('📱 Mobile - currículo sem botão selecionado');
+        document.querySelectorAll('.btn-idioma').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        // NÃO carrega PDF inicialmente (já que está oculto)
+        
+        // Deixa o iframe vazio no mobile
+        const iframe = document.getElementById('curriculoFrame');
+        iframe.src = 'about:blank';
+    } else {
+        // DESKTOP: Comportamento normal - Português selecionado
+        console.log('🖥️ Desktop - currículo em português por padrão');
+        mudarIdiomaCurriculo('pt'); // Carrega PDF e seleciona botão
+    }
+    
+    // Configurar event listeners para os botões
     document.querySelectorAll('.btn-idioma').forEach(btn => {
         btn.addEventListener('click', () => {
             mudarIdiomaCurriculo(btn.dataset.idioma);
         });
     });
 }
+
+
 
 
