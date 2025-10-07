@@ -189,40 +189,53 @@ function carregarCertificado() {
     }
 }
 
-// Função para trocar idioma
+// Função para trocar idioma - VERSÃO ÚNICA E INTELIGENTE
 function mudarIdioma(idioma) {
     const urlParams = new URLSearchParams(window.location.search);
     const certificadoId = urlParams.get('id');
     const certificado = certificados[certificadoId];
 
-    console.log('🌐 Mudando para idioma:', idioma, 'Certificado:', certificadoId);
+    console.log('🌐 Mudando para idioma:', idioma);
 
     if (certificado && certificado[idioma]) {
-        const iframe = document.getElementById('certificadoFrame');
-        console.log('📄 Carregando PDF:', certificado[idioma]);
-        iframe.src = certificado[idioma];
+        // Verifica se é mobile
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // MOBILE: Abre em nova aba (melhor experiência)
+            console.log('📱 Mobile - abrindo PDF em nova aba');
+            window.open(certificado[idioma], '_blank');
+        } else {
+            // DESKTOP: Carrega no iframe normalmente
+            const iframe = document.getElementById('certificadoFrame');
+            console.log('🖥️ Desktop - carregando no iframe');
+            iframe.src = certificado[idioma];
+        }
 
-        // Atualiza botões ativos
+        // Atualiza visual dos botões (funciona em ambos)
         document.querySelectorAll('.btn-idioma').forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.idioma === idioma) {
                 btn.classList.add('active');
             }
         });
+        
     } else {
-        console.error('❌ PDF não encontrado para:', certificadoId, 'idioma:', idioma);
-        // Mensagem amigável
-        const iframe = document.getElementById('certificadoFrame');
-        iframe.srcdoc = `
-            <html>
-                <body style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; color: #333; font-family: Arial;">
-                    <div style="text-align: center;">
-                        <h2>Versão em ${idioma.toUpperCase()} não disponível</h2>
-                        <p>Este certificado ainda não possui versão no idioma selecionado.</p>
-                    </div>
-                </body>
-            </html>
-        `;
+        console.error('❌ PDF não encontrado');
+        // Mensagem de erro apenas no desktop
+        if (window.innerWidth > 768) {
+            const iframe = document.getElementById('certificadoFrame');
+            iframe.srcdoc = `
+                <html>
+                    <body style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; color: #333; font-family: Arial;">
+                        <div style="text-align: center;">
+                            <h2>Versão em ${idioma.toUpperCase()} não disponível</h2>
+                            <p>Este certificado ainda não possui versão no idioma selecionado.</p>
+                        </div>
+                    </body>
+                </html>
+            `;
+        }
     }
 }
 
